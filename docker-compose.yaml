@@ -1,0 +1,12 @@
+version: "3"
+services:
+  kmu-line-bot:
+    restart: always
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    volumes:
+      - ./data:/bot/data
+    ports:
+      - 127.0.0.1:7070:7070
+    command: /bin/bash -c "source ~/.bashrc && rye run uvicorn main:app --reload --host=0.0.0.0 --port=3000"
